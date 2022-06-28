@@ -1,0 +1,22 @@
+.image_label {
+  display: inline-block;
+  background-color: blueviolet;
+  color: white;
+  padding: 0.5rem 1rem;
+}
+.image_input {
+  visibility: hidden;
+}
+.upload_image {
+  max-width: 100%;
+  max-height: 25rem;
+}
+.submit {
+  display: block;
+}
+.color_box_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
