@@ -1,5 +1,5 @@
 const imageColorExtract = {
-  colors: {
+  data: {
     background_colors: [
       {
         b: 47,

@@ -6,7 +6,6 @@ import { getImageColorExtract } from "../utils/mock-data";
 
 export default function IndexPage() {
   const [file, setFile] = useState(null);
-  const [src, setSrc] = useState(null);
   const [previewError, setPreviewError] = useState(null);
   const [hexColors, setHexColors] = useState([]);
   const formRef = React.useRef();
@@ -16,22 +15,10 @@ export default function IndexPage() {
     const files = input.files;
 
     if (files.length < 1) {
-      setPreviewError("NO FILE SELECTED");
+      setPreviewError("select a picture pls");
       return;
     }
-    const url = URL.createObjectURL(files[0]);
-
     setFile(files[0]);
-    setSrc(url);
-    formRef.current.requestSubmit();
-  };
-
-  const submitForm = async (event) => {
-    event.preventDefault();
-    if (!file) {
-      setPreviewError("please select an image");
-      return;
-    }
     const reader = new FileReader();
     reader.addEventListener("load", async function () {
       const formData = {
@@ -40,6 +27,7 @@ export default function IndexPage() {
       // const result = await Api.uploadImage(formData);
       const result = getImageColorExtract();
 
+      console.log(result);
       const imageColors = result.data.image_colors.map((color) => {
         const {
           r,
@@ -57,19 +45,26 @@ export default function IndexPage() {
         };
       });
       setHexColors(imageColors.slice(0, 4));
-      // console.log(result.data.image_colors);
     });
+    reader.readAsDataURL(files[0]);
+  };
 
-    reader.readAsDataURL(file);
+  const submitForm = async (event) => {
+    event.preventDefault();
   };
 
   return (
     <div>
       <section>
         <section>
-          {src && (
-            <img src={src} alt="upload" className={styles.upload_image} />
-          )}
+          {file &&
+            (() => {
+              const url = URL.createObjectURL(file);
+
+              return (
+                <img src={url} alt="upload" className={styles.upload_image} />
+              );
+            })()}
         </section>
         <form ref={formRef} onSubmit={submitForm}>
           <label htmlFor="image" className={styles.image_label}>
@@ -88,13 +83,10 @@ export default function IndexPage() {
           )}
         </form>
       </section>
-      <section>
-        <button>fetch color</button>
-      </section>
       {hexColors.length >= 1 && (
         <div className={styles.color_box_container}>
           {hexColors.map((hexColor, key) => (
-            <ColorBox key={key} hex={hexColor.hex} name={hexColor.color_name} />
+            <ColorBox key={key} color={hexColor} />
           ))}
         </div>
       )}
