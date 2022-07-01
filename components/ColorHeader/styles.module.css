@@ -1,0 +1,40 @@
+.color_header_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+  width: 100%;
+}
+
+.color_info {
+  text-transform: capitalize;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  font-weight: light;
+  gap: 0.8rem;
+}
+
+.copy_button {
+  padding: 0.2rem;
+  border-radius: 20%;
+  transition: transform 0.2s ease-in-out;
+  font-size: 1.2rem;
+}
+.copy_button:hover {
+  transform: scale(1.5);
+}
+.copy_button:active {
+  transform: scale(1);
+}
+
+.dark_color {
+}
+.dark_bg {
+}
+
+.white_color {
+}
+
+.white_bg {
+}

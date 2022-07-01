@@ -3,3 +3,28 @@
   padding: 0;
   margin: 0;
 }
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  /* background-color: #fff; */
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dark_color {
+  color: #fff;
+}
+.light_color {
+  color: #333;
+}
